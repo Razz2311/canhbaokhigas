@@ -1,0 +1,18 @@
+version: "2.4"
+
+services:
+  openhab:
+    image: "openhab/openhab:latest"
+    container_name: openhab
+    restart: unless-stopped
+    ports:
+      - "8080:8080"    # Giao diện web HTTP
+      - "8443:8443"    # Giao diện web HTTPS
+    environment:
+      USER_ID: "1000"
+      GROUP_ID: "1000"
+      CRYPTO_POLICY: "unlimited"
+    volumes:
+      - ./openhab/addons:/openhab/addons
+      - ./openhab/conf:/openhab/conf
+      - ./openhab/userdata:/openhab/userdata
